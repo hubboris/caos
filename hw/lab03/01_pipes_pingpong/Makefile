@@ -1,20 +1,15 @@
-SHELL := /bin/bash
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c2x
 
-CC := gcc
-CFLAGS := -O2 -Wall -Wextra -Wpedantic -std=c11
-
-TARGET := solution03_01
-SRC := solution03_01.c
-
-.PHONY: all clean test
+TARGET = solution03_01
 
 all: $(TARGET)
 
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+$(TARGET): solution03_01.c
+	$(CC) $(CFLAGS) -o $(TARGET) solution03_01.c
 
 test: all
-	python3 -m unittest -v
+	python3 -m unittest discover -s tests -p "test_*.py" -v
 
 clean:
 	rm -f $(TARGET)
