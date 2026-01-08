@@ -56,6 +56,7 @@ jobs:
         task:
           - "01_pipes_pingpong"
           - "02_threads_mutex"
+          - "03_tcp_client"
 
     steps:
       - name: Checkout repository
