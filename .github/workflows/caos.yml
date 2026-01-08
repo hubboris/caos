@@ -1,0 +1,74 @@
+name: CAOS
+
+on:
+  push:
+    paths:
+      - "hw/**"
+      - "asm/**"
+      - ".github/workflows/caos.yml"
+  pull_request:
+    paths:
+      - "hw/**"
+      - "asm/**"
+      - ".github/workflows/caos.yml"
+
+jobs:
+  lab02:
+    name: lab02
+    runs-on: ubuntu-latest
+    if: |
+      contains(github.event.head_commit.message, '') ||
+      github.event_name == 'pull_request' ||
+      startsWith(github.ref, 'refs/heads/')
+    strategy:
+      fail-fast: false
+      matrix:
+        task:
+          - "01_i64_to_i32"
+          - "02_countdown"
+          - "03_mul_shift_add"
+          - "04_my_sin"
+          - "05_sys_echo"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc make python3
+
+      - name: Build ${{ matrix.task }}
+        working-directory: hw/lab02/${{ matrix.task }}
+        run: make
+
+      - name: Test ${{ matrix.task }}
+        working-directory: hw/lab02/${{ matrix.task }}
+        run: make test
+
+  lab03:
+    name: lab03
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        task:
+          - "01_pipes_pingpong"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc make python3
+
+      - name: Build ${{ matrix.task }}
+        working-directory: hw/lab03/${{ matrix.task }}
+        run: make
+
+      - name: Test ${{ matrix.task }}
+        working-directory: hw/lab03/${{ matrix.task }}
+        run: make test
