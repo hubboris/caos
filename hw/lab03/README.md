@@ -9,5 +9,9 @@
 ## Задачи для самостоятельного решения
 
 [Задача 1. pipes-pingpong](./01_pipes_pingpong/README.md)
+
 [Задача 2. threads-mutex](./02_threads_mutex/README.md)
+
 [Задача 3. tcp-client](./03_tcp_client/README.md)
+
+[Задача 4. mp-hello](./04_mp_hello/README.md)
