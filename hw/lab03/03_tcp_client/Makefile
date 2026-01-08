@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c2x -O2
+CFLAGS = -Wall -Wextra -std=c2x -O2 -D_POSIX_C_SOURCE=200809L
 
 all: solution03_03
 
