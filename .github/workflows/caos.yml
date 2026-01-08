@@ -55,6 +55,7 @@ jobs:
       matrix:
         task:
           - "01_pipes_pingpong"
+          - "02_threads_mutex"
 
     steps:
       - name: Checkout repository
